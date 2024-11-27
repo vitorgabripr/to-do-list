@@ -1,8 +1,5 @@
-import tkinter as tk
-from tkinter import messagebox
-
-
 class ListaToDo:
+    
     def __init__(self):
         self.tarefas = []
 
