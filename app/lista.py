@@ -3,18 +3,19 @@ class ListaToDo:
     def __init__(self):
         self.tarefas = []
 
-    def adicionar_elemento(self):
-        nome = input("Digite o nome da tarefa: \n")
-        self.tarefas.append(nome)
-        print(f"Tarefa '{nome}' adicionada com sucesso!")
-        
+    def adicionar_elemento(self, nome):
+       if nome != '':
+            self.tarefas.append(nome)
+            return True
+       return False
     def mostrar_tarefas(self):
         if not self.tarefas:
-            print("Nenhuma tarefa adicionada ainda.")
+            return "Nenhuma tarefa adicionada ainda..."
         else:
-            print("Tarefas:")
-            for i, tarefa in enumerate(self.tarefas):
-                print(f"{i+1}. {tarefa}")
+           
+            tarefas_texto = "\n".join(f"{i+1}. {tarefa}" 
+                                      for i, tarefa in enumerate(self.tarefas))
+            return tarefas_texto  
 
     def iniciar_programa(self):
         continuar = True
@@ -29,5 +30,5 @@ class ListaToDo:
 
 
 # Inicializa a classe e chama o programa
-programa = ListaToDo()
-programa.iniciar_programa()
+#programa = ListaToDo()
+#programa.iniciar_programa()
