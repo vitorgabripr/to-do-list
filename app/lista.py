@@ -30,5 +30,3 @@ class ListaToDo:
 
 
 # Inicializa a classe e chama o programa
-#programa = ListaToDo()
-#programa.iniciar_programa()

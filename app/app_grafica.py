@@ -35,5 +35,39 @@ class ComecarGrafica():
 #fucao para add tarefas
     def addTarefa(self):
         nome = self.lis
+    
+    import tkinter as tk
 
-app = ComecarGrafica()
+# Função para adicionar item à lista (isso chamaria uma função no seu backend)
+def add_item():
+    item = entry.get()
+    if item:
+        ltd.add_to_do(item)
+        listbox.insert(tk.END, item)  # Insere o item na lista
+        entry.delete(0, tk.END)
+
+# Configurando a janela principal
+root = tk.Tk()
+root.title("2-Do List")
+
+# Label
+label = tk.Label(root, text="2DoList")
+label.pack(pady=10)
+
+# Entrada para novos itens
+entry = tk.Entry(root, width=50)
+entry.pack(pady=5)
+
+# Botão para adicionar item
+add_button = tk.Button(root, text="Adicionar", command=add_item)
+add_button.pack(pady=5)
+
+# Lista de tarefas
+listbox = tk.Listbox(root, width=50, height=10)
+listbox.pack(pady=20)
+
+# Executar a aplicação Tkinter
+root.mainloop()
+
+
+#app = ComecarGrafica()
