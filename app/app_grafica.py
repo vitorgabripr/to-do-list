@@ -1,37 +1,48 @@
 import tkinter as tk
-from lista import ListaToDo  # Certifique-se de que o arquivo ListaToDo.py está no mesmo diretório
+from tkinter import ttk
 
-# Instanciar a classe ListaToDo
-lista_to_do = ListaToDo()
+# Função para adicionar tarefa
+def adicionar_tarefa():
+    tarefa = entrada_tarefa.get()
+    if tarefa:
+        lista_tarefas.insert(tk.END, tarefa)
+        entrada_tarefa.delete(0, tk.END)
+    else:
+        tk.messagebox.showwarning("Aviso", "Por favor, insira uma tarefa.")
 
-# Função para adicionar item à lista
-def add_item():
-    item = entry.get()  # Obtém o texto da entrada
-    if item:
-        sucesso = lista_to_do.adicionar_elemento(item)  # Adiciona o item na lista do backend
-        if sucesso:
-            listbox.insert(tk.END, item)  # Adiciona o item na Listbox
-            entry.delete(0, tk.END)  # Limpa a entrada de texto
-
-# Configurando a janela principal
+# Configuração da janela principal
 root = tk.Tk()
 root.title("To-Do List")
 
-# Label
-label = tk.Label(root, text="Minha To-Do List")  # Configura o label
-label.pack(pady=10)
+# Configuração do estilo
+style = ttk.Style()
+style.configure("TButton", font=("Helvetica", 10))
+style.configure("TLabel", font=("Helvetica", 12))
+style.configure("TEntry", font=("Helvetica", 12))
+style.configure("TListbox", font=("Helvetica", 12))
 
-# Entrada para novos itens
-entry = tk.Entry(root, width=50)  # Criei a entrada de texto
-entry.pack(pady=5)
+#tema
 
-# Botão para adicionar item
-add_button = tk.Button(root, text="Adicionar", command=add_item)  # Adicionei o comando para chamar add_item
-add_button.pack(pady=5)
+style.theme_use_fonts = True
+style.theme_use("clam")
 
-# Lista de tarefas
-listbox = tk.Listbox(root, width=50, height=10)
-listbox.pack(pady=20)
 
-# Executar a aplicação Tkinter
+# Criação dos widgets
+frame_top = tk.Frame(root)
+frame_top.pack(pady=10)
+frame_top.configure(bg="#f0f0f0")
+
+
+entrada_tarefa = ttk.Entry(frame_top, width=35)
+entrada_tarefa.pack(side=tk.LEFT, padx=5)
+entrada_tarefa.configure(style="TEntry", font="Helvetica", background="#ffffff")
+
+
+botao_adicionar = ttk.Button(frame_top, text="Adicionar Tarefa", command=adicionar_tarefa)
+botao_adicionar.pack(side=tk.LEFT)
+
+lista_tarefas = tk.Listbox(root, width=50, height=10, font=("Helvetica", 12))
+lista_tarefas.pack(pady=10)
+
+# Loop principal
 root.mainloop()
